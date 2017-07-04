@@ -1,0 +1,30 @@
+<style>
+    * {
+        font-family: "Droid Sans";
+    }
+</style>
+<div class="container">
+    <h3>Internet Cryptography</h3>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <button class="btn btn-default" (click)="setEncryptMethod('caeser')" [class.active]="encryptMethod === 'caeser'">Caeser Cipher</button>
+            <button class="btn btn-default" (click)="setEncryptMethod('bcrypt')" [class.active]="encryptMethod === 'bcrypt'">bcrypt</button>
+            <button class="btn btn-default" (click)="setEncryptMethod('ssl')" [class.active]="encryptMethod === 'ssl'">SSL</button>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <input type="text" placeholder="Secret message" #input>
+            <button class="btn btn-primary" (click)="onClickEncrypt($event)">Encrypt!</button>
+            <button class="btn btn-info" (click)="clear()">Clear Output</button>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">Output</div>
+        <div class="panel-body">
+            <p *ngFor="let hash of hashes"><code>{{ hash }}</code></p>
+        </div>
+    </div>
+
+</div>
