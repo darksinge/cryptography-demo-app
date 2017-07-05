@@ -7,15 +7,26 @@
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
     <!--Droid Serif Font-->
     <link href="https://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script>
+      window.$ = window.jQuery = require('./js/jquery.min.js');
+    </script>
+    
+    <script src="./js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="./css/bootstrap.css">
 
   </head>
   <body>
+    <style>
+      * {
+        font-family: "Droid Sans";
+      }
+    </style>
     <App></App>
   </body>
   <script>window.exports = module.exports</script>
   <script src="../node_modules/zone.js/dist/zone.js"></script>
   <script src="../node_modules/reflect-metadata/Reflect.js"></script>
-  <script src="../assets/js/bootstrap.min.js"></script>
   <script src="bootstrap.ts"></script>
 </html>
