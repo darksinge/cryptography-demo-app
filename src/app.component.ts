@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BcryptComponent } from './bcrypt/bcrypt.component';
 import { CaesarComponent } from './caesar/caesar.component';
-import { SSLComponent } from './ssl/ssl.component';
+import { SimpleSSLComponent } from './ssl/simple-ssl.component';
 
-
-const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+export class Alphabet {
+  public static readonly alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+}
 
 @Component({
+  moduleId: module.id,
   selector: 'App',
   templateUrl: './app.component.html',
   styleUrls: ['./css/bootstrap.css']
@@ -18,7 +20,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild('app-bcrypt') bcryptComp: BcryptComponent;
   @ViewChild('app-caesar') caesarComp: CaesarComponent;
-  @ViewChild('app-ssl') sslComp: SSLComponent;
+  @ViewChild('simplessl') sslComp: SimpleSSLComponent;
 
   public hashes: string[] = [];
   public saltRounds: number = 1;
@@ -41,11 +43,10 @@ export class AppComponent implements OnInit {
       break;
       case 'bcrypt':
       encMsg = this.bcryptComp.encrypt(msg);
-      console.log('2');
       break;
       case 'ssl':
-      
-      console.log('3');
+      encMsg = this.sslComp.encrypt(msg);
+      break;
     }
     this.hashes.push(encMsg);
   }
@@ -62,12 +63,12 @@ export class AppComponent implements OnInit {
     const shiftVal = 3;
     s = s.toLowerCase();
     let arr = s.split('').map(char => {
-      let alphIndex = alphabet.indexOf(char);
+      let alphIndex = Alphabet.alphabet.indexOf(char);
       if (alphIndex < 0) {
         return char;
       }
       let shift = (alphIndex + shiftVal) -1 > 26 ? alphIndex + shiftVal - 26 : alphIndex + shiftVal;
-      return alphabet[shift];
+      return Alphabet.alphabet[shift];
     })
     
     return arr.reduce((sum, val) => {

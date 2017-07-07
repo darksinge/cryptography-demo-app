@@ -3,7 +3,7 @@ import { hashSync, compareSync } from 'bcrypt';
 
 
 @Component({
-    moduleId: module.id.split('\\').join('/'),
+    moduleId: module.id,
     selector: 'app-bcrypt',
     templateUrl: './bcrypt.component.html'
 })
@@ -14,9 +14,7 @@ export class BcryptComponent implements OnInit {
 
     public saltRounds: number = 1;
 
-    ngOnInit() {
-        console.log('component initialized');
-    }
+    ngOnInit() {}
 
     onChangeSaltRounds() {
         // this.saltRoundsEventEmitter.emit(this.selector.nativeElement.value || 1);

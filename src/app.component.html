@@ -5,13 +5,13 @@
         <div class="panel-body">
             <button class="btn btn-default" (click)="encryptMethod = 'caesar'" [class.active]="encryptMethod === 'caesar'">Caesar Cipher</button>
             <button class="btn btn-default" (click)="encryptMethod = 'bcrypt'" [class.active]="encryptMethod === 'bcrypt'">bcrypt</button>
-            <button class="btn btn-default" (click)="encryptMethod = 'ssl'" [class.active]="encryptMethod === 'ssl'">SSL</button>
+            <button class="btn btn-default" (click)="encryptMethod = 'ssl'" [class.active]="encryptMethod === 'ssl'">Simple SSL</button>
             
             <app-caesar *ngIf="encryptMethod === 'caesar'"></app-caesar>
 
             <app-bcrypt *ngIf="encryptMethod === 'bcrypt'" (output)="onOutput($event)"></app-bcrypt>
 
-            <app-ssl *ngIf="encryptMethod === 'ssl'"></app-ssl>
+            <app-simplessl *ngIf="encryptMethod === 'ssl'" (output)="onOutput($event)" #simplessl></app-simplessl>
 
         </div>
     </div>
