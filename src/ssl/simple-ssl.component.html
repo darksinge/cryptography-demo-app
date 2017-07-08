@@ -1,8 +1,55 @@
-<div>
-    <p>Secret Key</p>
-    <input type="password" #secretKey required (change)="onChange()">
-</div>
-<div>
-    <p>Public Key</p>
-    <input type="text" #publicKey required (change)="onChange()">
+<style>
+    .key-wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+    .key-wrapper-child {
+        display: flex;
+        flex-direction: column;
+        margin: 16px;
+    }
+</style>
+
+<div class="key-wrapper">
+
+    <div class="key-wrapper-child">
+        <div>
+            <p>Secret Key #1</p>
+            <input type="password" #secretKey1 required (change)="onChange()">
+        </div>
+        <div>
+            <p>Public Key #1</p>
+            <input type="text" #publicKey1 required (change)="onChange()" [disabled]="true">
+            <!--<p>{{ publicKey }}</p>-->
+        </div>
+        <div [style.margin-top]="'12px'">
+            <button class="btn btn-primary" (click)="generatePubKey1()" [disabled]="secretKey1 === ''">Generate Public Key #1</button>
+        </div>
+        
+        <div [style.margin-top]="'12px'">
+            <button class="btn btn-primary" (click)="getSharedSecret()">Get Shared Secret</button>
+        </div>
+    </div>
+
+
+    <div class="key-wrapper-child">
+        <div>
+            <p>Secret Key #2</p>
+            <input type="password" #secretKey2 required (change)="onChange()" [disabled]="publicKey1 === ''">
+        </div>
+        <div>
+            <p>Public Key #2</p>
+            <input type="text" #publicKey2 required (change)="onChange()" [disabled]="true">
+            <!--<p>{{ publicKey }}</p>-->
+        </div>
+        <div [style.margin-top]="'12px'">
+            <button class="btn btn-primary" (click)="generatePubKey2()" [disabled]="secretKey2 === ''">Generate Public Key #2</button>
+        </div>
+    </div>
+
+    <div class="key-wrapper-child">
+        <p>#1 Shared Secret: {{ sharedSecret1 }}</p>
+        <p>#2 Shared Secret: {{ sharedSecret2 }}</p>
+    </div>
+
 </div>

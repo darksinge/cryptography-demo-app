@@ -5,6 +5,7 @@ import { SimpleSSLComponent } from './ssl/simple-ssl.component';
 
 export class Alphabet {
   public static readonly alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  public static readonly special = ['!', '@', '#', '$', '%', '^', '&', '*', '.'];
 }
 
 @Component({
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
   public hashes: string[] = [];
   public saltRounds: number = 1;
 
-  public encryptMethod: string = "caesar";
+  public encryptMethod: string = "ssl";
 
   ngOnInit() {
     console.log('component initialized');
